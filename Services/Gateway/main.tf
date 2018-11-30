@@ -102,5 +102,17 @@ resource "vsphere_virtual_machine" "GATEWAYvm" {
       ipv4_gateway = "10.237.198.1"
       dns_server_list = ["10.237.198.254", "10.201.16.29"]
       }
+
+}
+
+  provisioner "file" {
+    source      = "C:/Users/soperb/Documents/Lab/PacLabs/SSH_Keys/authorized_keys"
+    destination = "/root/.ssh/authorized_keys"
+
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = "${var.root_password}"
+}
 }
 }

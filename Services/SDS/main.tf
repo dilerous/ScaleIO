@@ -3,6 +3,8 @@ variable "datastore"{}
 variable "ipv4_344" {}
 variable "ipv4_siopg1"{}
 variable "ipv4_siopg2"{}
+variable "root_password"{}
+variable "server_name"{}
 
 
 data "vsphere_datacenter" "dc" {
@@ -46,7 +48,7 @@ data "vsphere_virtual_machine" "template" {
 
 resource "vsphere_virtual_machine" "SDSvm" {
   count            = "${var.servers}"
-  name             = "terraform-SIOSVM${count.index + 1}"
+  name             = "${var.server_name}"
   resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}"
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
   num_cpus         = 2
@@ -81,7 +83,7 @@ resource "vsphere_virtual_machine" "SDSvm" {
 
     customize {
       linux_options {
-        host_name = "terraform-SIOSVM${count.index + 1}"
+        host_name = "${var.server_name}"
         domain    = "pac.lab"
       }
 
@@ -103,4 +105,15 @@ resource "vsphere_virtual_machine" "SDSvm" {
       dns_server_list = ["10.237.198.254", "10.201.16.29"]
     }
   }
+
+  provisioner "file" {
+    source      = "C:/Users/soperb/Documents/Lab/PacLabs/SSH_Keys/authorized_keys"
+    destination = "/root/.ssh/authorized_keys"
+
+  connection {
+    type     = "ssh"
+    user     = "root"
+    password = "${var.root_password}"
+}
+}
 }
