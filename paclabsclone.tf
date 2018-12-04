@@ -8,7 +8,7 @@ provider "vsphere" {
 module "GATEWAYvm"{
   source       = "Services/Gateway"
   servers      = "1"
-  datastore    = "PacLabs001_Boot"
+  datastore    = "PacLabs007_Boot"
   ipv4_344     = "10.237.198.170"
   ipv4_siopg1  = "192.168.10.200"
   ipv4_siopg2  = "192.168.11.200"
@@ -17,8 +17,8 @@ module "GATEWAYvm"{
 
 module "SDSvm1"{
   source       = "Services/SDS"
-  servers      = "1"
-  datastore    = "PacLabs002_Boot"
+  servers      = "0"
+  datastore    = "PacLabs007_Boot"
   ipv4_344     = "10.237.198.171"
   ipv4_siopg1  = "192.168.10.201"
   ipv4_siopg2  = "192.168.11.201"
@@ -28,8 +28,8 @@ module "SDSvm1"{
 
 module "SDSvm2"{
   source       = "Services/SDS"
-  servers      = "1"
-  datastore    = "PacLabs003_Boot"
+  servers      = "0"
+  datastore    = "PacLabs008_Boot"
   ipv4_344     = "10.237.198.172"
   ipv4_siopg1  = "192.168.10.202"
   ipv4_siopg2  = "192.168.11.202"
@@ -40,8 +40,8 @@ module "SDSvm2"{
 
 module "SDSvm3"{
   source       = "Services/SDS"
-  servers      = "1"
-  datastore    = "PacLabs004_Boot"
+  servers      = "0"
+  datastore    = "PacLabs009_Boot"
   ipv4_344     = "10.237.198.173"
   ipv4_siopg1  = "192.168.10.203"
   ipv4_siopg2  = "192.168.11.203"

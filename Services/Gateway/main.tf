@@ -15,32 +15,32 @@ data "vsphere_datastore" "datastore" {
 }
 
 data "vsphere_compute_cluster" "cluster" {
-  name          = "Nehalem"
+  name          = "SIODev"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_resource_pool" "pool" {
-  name          = "Nehalem/Resources"
+  name          = "SIODev/Resources"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_network" "vlan344" {
-  name          = "pg_344"
+  name          = "siodev_pg_344"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_network" "sio_pg1" {
-  name          = "sio_pg1"
+  name          = "siodev_sio_pg1"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_network" "sio_pg2" {
-  name          = "sio_pg2"
+  name          = "siodev_sio_pg2"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = "CentOSTemplate"
+  name          = "SIODev_CentOS7_Template"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
